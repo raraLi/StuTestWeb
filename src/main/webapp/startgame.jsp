@@ -14,7 +14,6 @@
             height: 100vh;
             margin: 0;
             position: relative;
-            background-image: url('background.jpg');
             background-size: cover;
             background-position: center;
         }
@@ -39,29 +38,47 @@
             background-color: #45a049;
         }
 
-        .profile-icon {
+        .profile-icons {
             position: absolute;
             top: 10px;
             right: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end; /* Align icons and tooltips to the right */
         }
 
-        .profile-icon img {
-            width: 50px;
-            height: 50px;
+        .profile-icons a {
+            margin-top: 10px;
+            text-decoration: none;
+            color: #333;
+            display: flex;
+            align-items: center;
+            position: relative; /* Ensure relative positioning for absolute positioning of tooltips */
+        }
+
+        .profile-icons a img {
+            width: 60px; /* Adjust as needed */
+            height: 60px; /* Adjust as needed */
             border-radius: 50%;
+            margin-right: 10px; /* Add spacing between icon and tooltip */
         }
 
-        .profile-icon:hover::after {
-            content: "个人主页";
+        .profile-icons a::after {
+            content: attr(data-tooltip);
             position: absolute;
             top: 50%;
-            right: calc(100% + 5px);
+            right: calc(100% + 10px); /* Position tooltip to the left of the icon */
             transform: translateY(-50%);
             padding: 5px;
             background-color: #888;
             color: #fff;
             border-radius: 5px;
             white-space: nowrap;
+            display: none; /* Hide tooltip by default */
+        }
+
+        .profile-icons a:hover::after {
+            display: block; /* Show tooltip on hover */
         }
 
         h1 {
@@ -70,20 +87,20 @@
             font-weight: 500;
             text-align: center;
             color: #FFA500;
-            -webkit-animation: bounce 2s infinite;
+            animation: bounce 2s infinite;
         }
 
-        @-webkit-keyframes bounce {
-            0%,100%,20%,50%,80% {
-                -webkit-transform: translateY(0);
+        @keyframes bounce {
+            0%, 100%, 20%, 50%, 80% {
+                transform: translateY(0);
             }
 
             40% {
-                -webkit-transform: translateY(-30px);
+                transform: translateY(-30px);
             }
 
             60% {
-                -webkit-transform: translateY(-15px);
+                transform: translateY(-15px);
             }
         }
     </style>
@@ -92,18 +109,26 @@
     <div class="container">
         <h1>大富翁模拟器</h1>
         <button onclick="startGame()">开始游戏</button>
-        <a href="personal.jsp" class="profile-icon">
+    </div>
+
+    <div class="profile-icons">
+        <a href="personal.jsp" class="profile-icon" data-tooltip="个人主页">
             <img src="user.jpg" alt="Profile Icon">
+        </a>
+        <a href="rank.jsp" data-tooltip="富翁榜">
+            <img src="rank_icon.jpg" alt="Rank Icon">
+        </a>
+        <a href="text.jsp" data-tooltip="文本信息">
+            <img src="text_icon.jpg" alt="Text Icon">
         </a>
     </div>
 
     <script>
         function startGame() {
-            // 获取从index.jsp传递过来的id参数
             var userId = <%= request.getParameter("id") %>;
-            // 跳转到game.jsp，并带上userId参数
             window.location.href = "game.jsp?id=" + userId;
         }
     </script>
 </body>
 </html>
+

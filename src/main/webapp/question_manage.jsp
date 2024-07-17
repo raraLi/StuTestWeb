@@ -54,10 +54,41 @@
         .content {
             margin-left: 200px; /* 与 sidebar 的宽度保持一致 */
             padding: 20px;
+            position: relative; /* Allows absolute positioning of search elements */
+            overflow: hidden; /* Ensure content doesn't overlap with sidebar */
         }
 
         .content h1 {
             color: #333;
+            display: inline-block; /* Make h1 and search elements inline */
+            margin-right: 20px; /* Add space between h1 and search elements */
+            margin-top: 10px;
+        }
+
+        #searchContainer {
+            float: right; /* Align search box to the right */
+            margin-top: 12px; /* Adjust top margin as needed */
+        }
+
+        #searchInput {
+            padding: 10px;
+            width: 200px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
         }
 
         table {
@@ -90,6 +121,16 @@
         .add-button:hover {
             background-color: #45a049;
         }
+        .content .action-link {
+            text-decoration: none; /* 去掉下划线 */
+            color: #4CAF50; /* 设置默认颜色 */
+            transition: color 0.3s ease; /* 添加过渡效果 */
+        }
+
+        .content .action-link:hover {
+            color: #45a049; /* 悬停时改变颜色 */
+        }
+
     </style>
 </head>
 <body>
@@ -107,6 +148,11 @@
 
 <div class="content">
     <h1>题目管理</h1>
+
+    <div id="searchContainer">
+        <input type="text" id="searchInput" placeholder="搜索题目内容...">
+        <button onclick="searchTable()">搜索</button>
+    </div>
 
     <table>
         <tr>
@@ -129,8 +175,9 @@
             <td><%= rs.getInt("qid") %></td>
             <td><%= rs.getString("qtext") %></td>
             <td>
-                <a href="editQuestion.jsp?qid=<%= rs.getInt("qid") %>">编辑</a>
-                <a href="deleteQuestion.jsp?qid=<%= rs.getInt("qid") %>">删除</a>
+                <a href="editQuestion.jsp?qid=<%= rs.getInt("qid") %>" class="action-link">编辑</a>
+                <a href="deleteQuestion.jsp?qid=<%= rs.getInt("qid") %>" class="action-link">删除</a>
+
             </td>
         </tr>
         <%
@@ -146,6 +193,30 @@
     <a href="addQuestion.jsp" class="add-button">添加题目</a>
 
 </div>
+
+<script>
+    function searchTable() {
+        // Declare variables
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("searchInput");
+        filter = input.value.toUpperCase();
+        table = document.querySelector("table");
+        tr = table.getElementsByTagName("tr");
+
+        // Loop through all table rows, and hide those that don't match the search query
+        for (i = 1; i < tr.length; i++) { // Start from 1 to skip the header row
+            td = tr[i].getElementsByTagName("td")[1]; // Index 1 corresponds to the column with question text
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
 
 </body>
 </html>

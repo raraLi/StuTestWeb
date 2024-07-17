@@ -94,6 +94,8 @@
         }
 
 
+
+
         .add-button {
             float: right;
             margin-top: 20px;
@@ -121,56 +123,43 @@
 </head>
 <body>
 
-<div class="sidebar">
-    <h2>后台管理</h2>
-    <ul>
-        <li><a href="user_manage.jsp">用户管理</a></li>
-        <li><a href="question_manage.jsp">题目管理</a></li>
-        <li><a href="choice_manage.jsp">选项管理</a></li>
-        <li><a href="random_manage.jsp">随机事件管理</a></li>
-        <li><a href="end_manage.jsp">游戏结局管理</a></li>
-    </ul>
-</div>
-
 <div class="content">
-    <h1>选项管理</h1>
+    <h1>论坛</h1>
 
     <table id="choiceTable">
         <thead>
             <tr>
-                <th>选项ID</th>
-                <th id="qidHeader">
-                    <select id="filterByQuestion" onchange="filterTable()">
-                        <option value="">题目ID</option>
-                        <%
-                            Connection conn = null;
-                            Statement stmt = null;
-                            ResultSet rs = null;
-                            try {
-                                conn = JDBCUtil.getConnection();
-                                stmt = conn.createStatement();
-                                String sql = "SELECT DISTINCT qid FROM choice";
-                                rs = stmt.executeQuery(sql);
-                                while (rs.next()) {
-                        %>
-                        <option value="<%= rs.getInt("qid") %>"><%= rs.getInt("qid") %></option>
-                        <%
-                                }
-                            } catch (SQLException e) {
-                                e.printStackTrace();
-                            } finally {
-                                JDBCUtil.close(conn, stmt, rs);
-                            }
-                        %>
-                    </select>
-                </th>
-                <th>选项内容</th>
-                <th>年龄</th>
-                <th>健康值</th>
-                <th>精神值</th>
-                <th>财富值</th>
-                <th>能力值</th>
-                <th>操作</th>
+
+                <th>用户ID</th>
+                <th>用户名</th>
+                <th>标题</th>
+                <th>内容</th>
+                 <th id="qidHeader">
+                                    <select id="filterByQuestion" onchange="filterTable()">
+                                        <option value="">分类</option>
+                                        <%
+                                            Connection conn = null;
+                                            Statement stmt = null;
+                                            ResultSet rs = null;
+                                            try {
+                                                conn = JDBCUtil.getConnection();
+                                                stmt = conn.createStatement();
+                                                String sql = "SELECT DISTINCT class FROM test";
+                                                rs = stmt.executeQuery(sql);
+                                                while (rs.next()) {
+                                        %>
+                                        <option value="<%= rs.getString("class") %>"><%= rs.getString("class") %></option>
+                                        <%
+                                                }
+                                            } catch (SQLException e) {
+                                                e.printStackTrace();
+                                            } finally {
+                                                JDBCUtil.close(conn, stmt, rs);
+                                            }
+                                        %>
+                                    </select>
+                                </th>
+                  <th>查看帖子</th>
             </tr>
         </thead>
         <tbody>
@@ -178,23 +167,19 @@
                 try {
                     conn = JDBCUtil.getConnection();
                     stmt = conn.createStatement();
-                    String sql = "SELECT cid, qid, ctext, cage, chealthy, csan, cmoney, ctalent FROM choice";
+                    String sql = "SELECT tid,tname,title,text,class FROM test";
                     rs = stmt.executeQuery(sql);
                     while (rs.next()) {
             %>
             <tr>
-                <td><%= rs.getInt("cid") %></td>
-                <td><%= rs.getInt("qid") %></td>
-                <td><%= rs.getString("ctext") %></td>
-                <td><%= rs.getString("cage") %></td>
-                <td><%= rs.getString("chealthy") %></td>
-                <td><%= rs.getString("csan") %></td>
-                <td><%= rs.getString("cmoney") %></td>
-                <td><%= rs.getString("ctalent") %></td>
+                <td><%= rs.getString("tid") %></td>
+                <td><%= rs.getString("tname") %></td>
+                <td><%= rs.getString("title") %></td>
+                <td><%= rs.getString("text") %></td>
+                <td><%= rs.getString("class") %></td>
                 <td>
-                    <a href="editChoice.jsp?cid=<%= rs.getInt("cid") %>"class="action-link">编辑</a>
-                    <a href="deleteChoice.jsp?cid=<%= rs.getInt("cid") %>"class="action-link">删除</a>
-                </td>
+                 <a href="view.jsp?tid=<%= rs.getInt("tid") %>"class="action-link">查看</a>
+                  </td>
             </tr>
             <%
                     }
@@ -207,25 +192,43 @@
         </tbody>
     </table>
 
-    <a href="addChoice.jsp" class="add-button">添加选项</a>
+    <a href="addtext.jsp" class="add-button">添加帖子</a>
 
 </div>
 
 <script>
     function filterTable() {
         var dropdown = document.getElementById("filterByQuestion");
-        var selectedQuestionId = dropdown.value;
+        var selectedClass = dropdown.value; // 获取选中的class值
         var table = document.getElementById("choiceTable");
         var rows = table.getElementsByTagName("tr");
 
+        // 遍历所有行，除了表头
         for (var i = 1; i < rows.length; i++) {
-            var qidCell = rows[i].getElementsByTagName("td")[1]; // Index 1 corresponds to the question ID column
-            if (selectedQuestionId === "" || qidCell.textContent.trim() === selectedQuestionId) {
-                rows[i].style.display = "";
+            var classCell = rows[i].getElementsByTagName("td")[4]; // 根据class的列索引获取单元格内容
+            if (selectedClass === "" || classCell.textContent.trim() === selectedClass) {
+                rows[i].style.display = ""; // 如果选中项为空或单元格内容与选中项匹配，则显示行
             } else {
-                rows[i].style.display = "none";
+                rows[i].style.display = "none"; // 否则，隐藏行
             }
         }
+    }
+
+    // 选择框的change事件监听器
+    document.getElementById("filterByQuestion").addEventListener("change", filterTable);
+
+    // 为每个选项添加鼠标悬停和离开事件监听
+    var dropdownOptions = document.getElementById("filterByQuestion").options;
+    for (var i = 0; i < dropdownOptions.length; i++) {
+        var option = dropdownOptions[i];
+        option.addEventListener("mouseenter", function() {
+            this.style.backgroundColor = "#45a049"; // 鼠标悬停时的背景颜色
+            this.style.color = "white"; // 文本颜色
+        });
+        option.addEventListener("mouseleave", function() {
+            this.style.backgroundColor = ""; // 恢复默认背景颜色
+            this.style.color = ""; // 恢复默认文本颜色
+        });
     }
 </script>
 
