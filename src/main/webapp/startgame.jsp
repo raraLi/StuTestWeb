@@ -123,7 +123,7 @@
         <a href="/rank.jsp" data-tooltip="富翁榜">
             <img src="/images/rank.jpg" alt="Rank Icon">
         </a >
-        <a href="text.jsp" data-tooltip="豪想来社区">
+        <a href="/test.jsp?id=${user.id}" data-tooltip="豪想来社区">
             <img src="/images/text.jpg" alt="Text Icon">
         </a >
     </div>

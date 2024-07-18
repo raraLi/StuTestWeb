@@ -16,6 +16,7 @@
         <li><a href="/choice_manage.jsp">选项管理</a></li>
         <li><a href="/random_manage.jsp">随机事件管理</a></li>
         <li><a href="/end_manage.jsp">游戏结局管理</a></li>
+        <li><a href"testmanage.jsp">论坛管理</a></li>
     </ul>
 </div>
 

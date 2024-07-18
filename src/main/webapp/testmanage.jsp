@@ -92,11 +92,16 @@
             font-size: 16px;
             border: 0; /* Remove border */
         }
+        .content .action-link {
+            text-decoration: none; /* 去掉下划线 */
+            color: #4CAF50; /* 设置默认颜色 */
+            transition: color 0.3s ease; /* 添加过渡效果 */
+        }
 
-
-
-
-        .add-button {
+        .content .action-link:hover {
+            color: #45a049; /* 悬停时改变颜色 */
+        }
+         .add-button {
             float: right;
             margin-top: 20px;
             padding: 10px 20px;
@@ -122,7 +127,17 @@
     </style>
 </head>
 <body>
-
+<div class="sidebar">
+    <h2>后台管理</h2>
+    <ul>
+        <li><a href="/user/list">用户管理</a></li>
+                <li><a href="/question_manage.jsp">题目管理</a></li>
+                <li><a href="/choice_manage.jsp">选项管理</a></li>
+                <li><a href="/random_manage.jsp">随机事件管理</a></li>
+                <li><a href="/end_manage.jsp">游戏结局管理</a></li>
+                <li><a href="/testmanage.jsp">论坛管理</a></li>
+    </ul>
+</div>
 <div class="content">
     <h1>论坛</h1>
 
@@ -159,7 +174,7 @@
                                         %>
                                     </select>
                                 </th>
-                  <th>查看帖子</th>
+                  <th>操作</th>
             </tr>
         </thead>
         <tbody>
@@ -178,8 +193,10 @@
                 <td><%= rs.getString("text") %></td>
                 <td><%= rs.getString("class") %></td>
                 <td>
-                 <a href="view.jsp?tid=<%= rs.getInt("tid") %>"class="action-link">查看</a>
-                  </td>
+                    <a href="view.jsp?tid=<%= rs.getInt("tid") %>" class="action-link">查看</a>
+                    <a href="edittext.jsp?tid=<%= rs.getInt("tid") %>" class="action-link">编辑</a>
+                    <a href="deletetest.jsp?tid=<%= rs.getInt("tid") %>" class="action-link">删除</a>
+                </td>
             </tr>
             <%
                     }
@@ -192,7 +209,7 @@
         </tbody>
     </table>
 
-    <a href="addtext.jsp" class="add-button">添加帖子</a>
+
 
 </div>
 

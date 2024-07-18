@@ -42,7 +42,7 @@
         }
 
         input[type="submit"], .close-button {
-            background-color: #4CAF50;
+            background-color: #FF6699;
             color: white;
             padding: 10px 20px;
             border: none;
@@ -52,7 +52,7 @@
         }
 
         input[type="submit"]:hover, .close-button:hover {
-            background-color: #45a049;
+            background-color:#E84B85;
         }
 
         .error-message {
@@ -60,6 +60,19 @@
             font-size: 0.9em;
             margin-top: 5px;
         }
+         .close-btn {
+                background-color: #FF6699;
+                color: white;
+                padding: 10px 20px;
+                border-radius: 4px;
+                text-decoration: none;
+                display: inline-block;
+                margin-top: 10px;
+            }
+
+            .close-btn:hover {
+                background-color: #E84B85;
+            }
     </style>
     <script>
         function validateForm() {
@@ -102,11 +115,11 @@
 <body>
 
 <div class="container">
-    <form action="addtext" method="post" onsubmit="return validateForm()">
+    <form action="/text/add" method="post" onsubmit="return validateForm()">
         <label for="tid">你的ID：</label>
-        <input type="text" id="tid" name="tid">
+        <input type="text" id="tid" name="tid" value="${user.id}" readonly>
         <label for="tname">用户名</label>
-        <input type="text" id="tname" name="tname">
+        <input type="text" id="tname" name="tname" value="${user.username}" readonly>
         <label for="title">标题:</label>
         <input type="text" id="title" name="title">
 
@@ -145,9 +158,12 @@
                             try { conn.close(); } catch (SQLException e) { /* 忽略异常 */ }
                         }
                     }
+
+
                 %>
         <input type="submit" value="添加帖子">
-        <a href="testmanage.jsp" class="close-button">关闭</a>
+        <a href="javascript:history.go(-1);" class="close-btn">关闭</a>
+
     </form>
 </div>
 </body>

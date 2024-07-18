@@ -75,13 +75,18 @@
         .submit-button:hover {
             background-color: #E84B85;
         }
+        .code-content img {
+            width: 200px; /* 设置宽度 */
+            height: auto; /* 高度自动调整，保持比例 */
+        }
+
     </style>
 </head>
 <body>
     <div class="code-content">
         <span class="close-button" onclick="return confirmClose();">&times;</span>
         <h2>请扫描下方二维码氪金：</h2>
-               <img src="path_to_your_image.jpg" alt="二维码">
+               <img src="/images/code.jpg" alt="二维码">
                <form action="/game/code" method="post">
                    <input type="hidden" name="id" value="<%= request.getParameter("id") %>">
                    <input type="hidden" name="qid" value="3">
