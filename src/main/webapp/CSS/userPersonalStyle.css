@@ -1,0 +1,51 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+}
+
+.container {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+
+.avatar {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    display: flex;
+      justify-content: center;
+      align-items: center;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* 可选：按钮之间的间距 */
+    margin-top:20px;
+ }
+
+.btn-primary {
+    background-color: #FF6699;
+    border-color: #FF6699;
+}
+
+.btn-primary:hover {
+    background-color: #E84B85;
+    border-color: #E84B85;
+}

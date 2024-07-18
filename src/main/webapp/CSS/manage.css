@@ -1,0 +1,95 @@
+  body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .sidebar {
+            position: fixed; /* 固定在页面左侧 */
+            top: 0;
+            left: 0;
+            width: 180px;
+            height: 100vh; /* full height */
+            background-color: #333;
+            color: #fff;
+            padding-top: 20px;
+        }
+
+        .sidebar h2 {
+            padding: 10px;
+            text-align: center;
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+            text-align: left;
+        }
+
+        .sidebar ul li {
+            padding: 15px;
+            border-bottom: 1px solid #666;
+        }
+
+        .sidebar ul li a {
+            color: #fff;
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+        }
+
+        .sidebar ul li a:hover {
+            background-color: #555;
+        }
+
+        .content {
+            margin-left: 200px; /* 与 sidebar 的宽度保持一致 */
+            padding: 20px;
+        }
+
+        .content h1 {
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .add-button {
+            float: right;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .add-button:hover {
+            background-color: #45a049;
+        }
+
+         .content .action-link {
+                              text-decoration: none; /* 去掉下划线 */
+                              color: #4CAF50; /* 设置默认颜色 */
+                              transition: color 0.3s ease; /* 添加过渡效果 */
+                          }
+
+                          .content .action-link:hover {
+                              color: #45a049; /* 悬停时改变颜色 */
+                          }
+
