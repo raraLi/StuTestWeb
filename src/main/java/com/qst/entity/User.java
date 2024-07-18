@@ -1,17 +1,24 @@
 package com.qst.entity;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class User {
 
     private Long id;
     private String username;
     private String password;
-    private String intro;
+    private String time;
+    private String isMaster;
+    private String state;
 
-    public User(Long id, String username, String password, String intro) {
+    public User(Long id, String username, String password, String time, String isMaster, String state) {
         this.id = id;
         this.username = username;
         this.password = password;
-        this.intro = intro;
+        this.time = time;
+        this.isMaster = isMaster;
+        this.state = state;
     }
 
     public User() {
@@ -41,12 +48,28 @@ public class User {
         this.password = password;
     }
 
-    public String getIntro() {
-        return intro;
+    public String getTime() {
+        return time;
     }
 
-    public void setIntro(String intro) {
-        this.intro = intro;
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public String getIsMaster() {
+        return isMaster;
+    }
+
+    public void setIsMaster(String isMaster) {
+        this.isMaster = isMaster;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 
     @Override
@@ -55,7 +78,13 @@ public class User {
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", intro='" + intro + '\'' +
+                ", time='" + time + '\'' +
                 '}';
     }
+    public String getCurrentDate() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        return sdf.format(new Date());
+    }
+
+
 }

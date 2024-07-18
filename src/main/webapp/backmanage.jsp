@@ -62,7 +62,7 @@
     <div class="sidebar">
         <h2>后台管理</h2>
         <ul>
-            <li><a href="user_manage.jsp">用户管理</a></li>
+            <li><a href="/user/list">用户管理</a></li>
             <li><a href="question_manage.jsp">题目管理</a></li>
             <li><a href="choice_manage.jsp">选项管理</a></li>
             <li><a href="random_manage.jsp">随机事件管理</a></li>

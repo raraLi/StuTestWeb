@@ -64,7 +64,7 @@
             height: auto;
         }
         .submit-button {
-            background-color: #4CAF50;
+            background-color: #FF6699;
             color: white;
             padding: 10px 20px;
             border: none;
@@ -73,19 +73,19 @@
         }
 
         .submit-button:hover {
-            background-color: #45a049;
+            background-color: #E84B85;
         }
     </style>
 </head>
 <body>
     <div class="code-content">
         <span class="close-button" onclick="return confirmClose();">&times;</span>
-        <h2>请扫描下方二维码：</h2>
+        <h2>请扫描下方二维码氪金：</h2>
                <img src="path_to_your_image.jpg" alt="二维码">
-               <form action="game.jsp" method="post">
+               <form action="/game/code" method="post">
                    <input type="hidden" name="id" value="<%= request.getParameter("id") %>">
                    <input type="hidden" name="qid" value="3">
-                   <input type="submit" class="submit-button" value="提交">
+                   <input type="submit" class="submit-button" value="我已氪金">
                </form>
            </div>
 

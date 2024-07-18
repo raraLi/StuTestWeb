@@ -14,6 +14,8 @@ import java.io.IOException;
 
 @WebServlet("/user/update")
 public class UserUpdateServlet extends HttpServlet {
+    private static final String UPDATE_BTN = "update";
+    private static final String RETURN_BTN = "return";
     private IUserService userService = new UserServiceImpl();
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -23,12 +25,26 @@ public class UserUpdateServlet extends HttpServlet {
         String id = req.getParameter("id");
         String username = req.getParameter("username");
         String password = req.getParameter("password");
-        String intro = req.getParameter("intro");
+        String time = req.getParameter("time");
+        String isMaster = req.getParameter("isMaster");
+        String state = req.getParameter("state");
+        /*获取按钮*/
+        String btn = req.getParameter("action");
         /*封装数据*/
-        User user = new User(Long.valueOf(id),username,password,intro);
-        /*调用业务层代码，更新*/
-        userService.edit(user);
-        /*重新查询展示数据，跳转到/user/list  回到userlist.jsp展示数据*/
-        resp.sendRedirect("/user/list");
+       User user = new User(Long.valueOf(id),username,password,time,isMaster,state);
+       /*判断按钮*/
+       if(UPDATE_BTN.equals(btn)){
+           /*调用业务层代码，更新*/
+           userService.edit(user);
+           /*重新查询展示数据，跳转到/user/list  回到userlist.jsp展示数据*/
+           req.setAttribute("user",user);
+           //跳转页面【转发，共享请求对象】
+           req.getRequestDispatcher("/userPersonal.jsp").forward(req,resp);
+       }
+       if(RETURN_BTN.equals(btn)){
+           req.setAttribute("user",user);
+           //跳转页面【转发，共享请求对象】
+           req.getRequestDispatcher("/startgame.jsp?id="+user.getId()).forward(req,resp);
+       }
     }
 }

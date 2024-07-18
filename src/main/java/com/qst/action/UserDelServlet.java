@@ -23,7 +23,9 @@ public class UserDelServlet extends HttpServlet {
 
         String id = req.getParameter("id");//获取前端传送给的数据
         long uid = Long.parseLong(id);
+        int pid = Integer.parseInt(id);
         userService.remove(uid);//根据前端传送的id删除数据
+        userService.removePlay(pid);
         resp.sendRedirect("/user/list");
 
     }

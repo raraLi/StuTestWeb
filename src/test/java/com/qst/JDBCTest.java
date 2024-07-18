@@ -10,8 +10,8 @@ import java.util.List;
 
 public class JDBCTest {
     /*JDBC
-    * 贾（加），连，预，执，释
-    * */
+     * 贾（加），连，预，执，释
+     * */
 
     /*写*/
 
@@ -21,7 +21,7 @@ public class JDBCTest {
             /*1.贾： 加载驱动*/
             com.mysql.cj.jdbc.Driver.class.newInstance();
             /*2.连： 建立链接,*/
-            String url = "jdbc:mysql://localhost:3306/test?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&rewriteBatchedStatements=true&allowPublicKeyRetrieval=true";
+            String url = "jdbc:mysql://localhost:3306/rich?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&rewriteBatchedStatements=true&allowPublicKeyRetrieval=true";
             String userName = "root";
             String password = "root";
             Connection conn = DriverManager.getConnection(url, userName, password);
@@ -170,30 +170,7 @@ public class JDBCTest {
     private IUserDao userDao = new UserDaoImpl();
 
 
-    @Test
-    public void testUserDaoImpl() throws SQLException {
-        User user = new User();
 
-        user.setUsername("皮卡丘");
-        user.setPassword("666");
-        user.setIntro("十万伏特");
-
-        Long id = userDao.insert(user);
-        System.out.println(id);
-    }
-
-    @Test
-    public void testUserDaoImplUpdate() throws SQLException {
-        User user = new User();
-
-        user.setUsername("皮球球");
-        user.setPassword("111111");
-        user.setIntro("五毛特效");
-        user.setId(15L);
-
-        userDao.update(user);
-
-    }
 
     @Test
     public void testUserDaoSelectOne() throws SQLException {

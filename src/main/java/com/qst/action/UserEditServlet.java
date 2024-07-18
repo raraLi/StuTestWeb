@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/user/toedit")
+@WebServlet("/user/edit")
 public class UserEditServlet  extends HttpServlet {
     private IUserService userService = new UserServiceImpl();
     @Override
@@ -23,7 +23,7 @@ public class UserEditServlet  extends HttpServlet {
         //3.将数据存入请求对象，作用域
         req.setAttribute("user",one);
         /*4.跳转到编辑页面，显示这条数据: 因为存入的是请求对象，所以转发，才能共享请求对象，也就是说jsp页面才能拿到user*/
-        req.getRequestDispatcher("/useredit.jsp").forward(req,resp);
+        req.getRequestDispatcher("/useredit.jsp?isMaster=user.isMaster").forward(req,resp);
 
     }
 }
