@@ -126,6 +126,15 @@
              .close-btn:hover {
                  background-color: #E84B85 ;
              }
+             .action-link {
+                 color: #FF8CB0; /* Ensure the text color is set */
+                 text-decoration: none; /* Remove underline */
+             }
+
+             .action-link:hover {
+                 text-decoration: underline; /* Add underline on hover if needed */
+             }
+
 
     </style>
 </head>
@@ -186,7 +195,7 @@
                 <td><%= rs.getString("text") %></td>
                 <td><%= rs.getString("class") %></td>
                 <td>
-                 <a href="view.jsp?tid=<%= rs.getInt("tid") %>"class="action-link">查看</a>
+                 <a href="view.jsp?tid=<%= rs.getInt("tid") %>" class="action-link">查看</a>
                   </td>
             </tr>
             <%

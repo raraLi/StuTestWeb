@@ -44,7 +44,7 @@
         .add-button {
             margin-top: 20px;
             padding: 10px 20px;
-            background-color: #4CAF50;
+            background-color: #FF6699;
             color: white;
             text-decoration: none;
             border-radius: 5px;
@@ -53,7 +53,7 @@
         }
 
         .add-button:hover {
-            background-color: #45a049;
+            background-color: #E84B85;
         }
         .content {
                     text-align: center; /* 文本居中 */
