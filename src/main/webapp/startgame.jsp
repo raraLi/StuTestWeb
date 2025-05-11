@@ -60,10 +60,12 @@
             }
 
             .profile-icons a img {
-                width: 100px; /* Adjust as needed */
-                height: 100px; /* Adjust as needed */
-                border-radius: 50%;
-                margin-right: 10px; /* Add spacing between icon and tooltip */
+                width: 100px; /* 图标的宽度 */
+                height: 100px; /* 图标的高度 */
+                border-radius: 50%; /* 使元素变成圆形 */
+                margin-right: 10px; /* 添加右边距 */
+                border: 3px solid #FF6699; /* 添加边框样式 */
+                box-sizing: border-box; /* 确保边框和内边距不会增加元素的总宽度 */
             }
 
             .profile-icons a::after {

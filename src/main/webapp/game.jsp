@@ -97,6 +97,7 @@
             float: left;
             margin-right: 10px;
             margin-top: 10px;
+            color: #F4A460;
         }
 
         .info-money {
@@ -104,6 +105,7 @@
             float: left;
             margin-right: 10px;
             margin-top: 10px;
+            color:	#FFD700;
         }
 
         .info-right {
